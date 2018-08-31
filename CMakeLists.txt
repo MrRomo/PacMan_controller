@@ -28,6 +28,19 @@ set(pacman_controller_HDRS
   #include/pacman_controller/header.h
 )
 
+set(pacman_controller2_SRCS
+  src/pacman_controller2_cpp.cpp
+)
+
+set(pacman_controller2_HDRS
+  #Add here header C++ files, if any
+  #include/pacman_controller/header.h
+)
+
 add_executable(pacman_controller_cpp ${pacman_controller_SRCS} ${pacman_controller_HDRS})
 target_link_libraries(pacman_controller_cpp ${catkin_LIBRARIES})
 add_dependencies(pacman_controller_cpp ${catkin_EXPORTED_TARGETS})
+
+add_executable(pacman_controller2_cpp ${pacman_controller2_SRCS} ${pacman_controller2_HDRS})
+target_link_libraries(pacman_controller2_cpp ${catkin_LIBRARIES})
+add_dependencies(pacman_controller2_cpp ${catkin_EXPORTED_TARGETS})
