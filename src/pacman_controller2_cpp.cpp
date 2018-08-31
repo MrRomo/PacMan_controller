@@ -12,7 +12,7 @@
 
 void performanceCallback(const pacman::performance::ConstPtr& msg)
 {
-    ROS_INFO("Vidas %d, score: %d, time: %d, performEval: %f",msg->lives, msg->score, msg->gtime, msg->performEval);
+    //ROS_INFO("Lives %d, score: %d, time: %d, performEval: %f",msg->lives, msg->score, msg->gtime, msg->performEval);
   
 }
 void pacmanPosCallback(const pacman::pacmanPos::ConstPtr& msg)
@@ -62,7 +62,6 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     strcpy(cadena, "pacmanCoord1");
     strcpy(cadenaAccion, "pacmanActions1");
-    printf("%s \n",cadena);
     ros::Publisher chatter_pub = n.advertise<pacman::actions>(cadenaAccion, 100);
     ros::Subscriber posPacmanSub = n.subscribe(cadena, 100, pacmanPosCallback);
     ros::Subscriber posGhostsSub = n.subscribe("ghostsCoord", 100, ghostsPosCallback);
@@ -71,21 +70,17 @@ int main(int argc, char **argv)
     ros::Subscriber gameStateSub = n.subscribe("gameState", 100, gameStateCallback);
     ros::ServiceClient mapRequestClient = n.serviceClient<pacman::mapService>("pacman_world");
     pacman::mapService srv;
-    srv.request.name = "Hola Mundo";
+    srv.request.name = "Controller2 cpp";
     if(mapRequestClient.call(srv))
     {	
 	printf("# obs: %d \n", srv.response.nObs);
 	printf("minX: %d maxX: %d \n", srv.response.minX, srv.response.maxX);
 	printf("minY: %d maxY: %d \n", srv.response.minY, srv.response.maxY);
 	inicio = true;
-	/*for(int i = 0; i < srv.response.nObs; i++)
-	{
-	  printf("Pos obstacles [%d] :  x = [%d]  y = [%d] \n",i ,srv.response.obs[i].x, srv.response.obs[i].y );
-	}*/
     }
     else
     {
-      printf("Error al iniciar, asegurese que el nodo pacman_world se este ejecutando \n");
+      printf("Error!! Make sure pacman_world node is running \n");
     }
     ros::Rate loop_rate(10);
     int count = 0;
@@ -93,7 +88,6 @@ int main(int argc, char **argv)
     {
       pacman::actions msg;
       msg.action = rand() % 5;
-      //ROS_INFO("%d", msg.num);
       chatter_pub.publish(msg);
       ros::spinOnce();
       loop_rate.sleep();
