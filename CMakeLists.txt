@@ -34,7 +34,7 @@ set(pacman_controller2_SRCS
 
 set(pacman_controller2_HDRS
   #Add here header C++ files, if any
-  #include/pacman_controller/header.h
+  #include/pacman_controller/header2.h
 )
 
 add_executable(pacman_controller_cpp ${pacman_controller_SRCS} ${pacman_controller_HDRS})

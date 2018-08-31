@@ -1,0 +1,32 @@
+# pacman-controller
+This is a ROS package that contains examples of controllers for the pacman_world node in the pacman package. Currently, the package contains two nodes: pacman_controller_cpp and pacman_controller2_cpp that are C++ nodes for controlling two pacmans; one that publishes to pacmanActions0 topic and another to pacmanActions1. 
+
+SYSTEM REQUIREMENTS
+	- Ubuntu 16.04 64 bits
+	- ROS Kinetic
+
+COMPILATION
+	- cd ~/catkin_ws/src
+	- git clone https://github.com/carlosquinterop/pacman-controller.git
+	- cd ..
+	- source devel/setup.bash
+	- catkin_make
+
+EXECUTION 
+There are two ways to execute a pacman controller node 1) By executing it directly in the same machine as the pacman_world node and 2) Using a bash script that set all the necessary network parameters so that the node can interact with a pacman_world node in the same local network, but in a different machine. The first option requires the user to independently run a roscore process, source the setup.bash and run the controller node using the rosrun command. The second option, automatically run the roscore process (if it is not already running), it sources the setup.bash file and asks for the server ip address.
+
+TRADITIONAL EXECUTION
+	- Open a new terminal
+	- Run: roscore
+	- Open a new terminal
+	- source devel/setup.bash
+	- rosrun pacman-controller pacman_controller_cpp
+
+NETWORK EXECUTION
+	- cd ~/catkin_ws/src/pacman-controller
+	- source starPacmanController.sh
+	- Enter the server ip address
+	- rosrun pacman-controller pacman_controller_cpp
+
+FOR DEVELOPMENT (Recommended)
+	- http://wiki.ros.org/IDEs#Reusing_your_shell.27s_environment
