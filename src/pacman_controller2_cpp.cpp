@@ -68,6 +68,7 @@ int main(int argc, char **argv)
     ros::Subscriber posCookiesSub = n.subscribe("cookiesCoord", 100, cookiesPosCallback);
     ros::Subscriber posBonuSub = n.subscribe("bonusCoord", 100, bonusPosCallback);
     ros::Subscriber gameStateSub = n.subscribe("gameState", 100, gameStateCallback);
+    ros::Subscriber performEvalSub = n.subscribe("performanceEval", 100, performanceCallback);
     ros::ServiceClient mapRequestClient = n.serviceClient<pacman::mapService>("pacman_world");
     pacman::mapService srv;
     srv.request.name = "Controller2 cpp";
