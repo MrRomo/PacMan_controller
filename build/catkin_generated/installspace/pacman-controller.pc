@@ -1,8 +1,0 @@
-prefix=/home/eyberth/catkin_ws/src/install
-
-Name: pacman-controller
-Description: Description of pacman-controller
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/eyberth/catkin_ws/src/install/lib 
-Requires: roscpp roslib rospy pacman
