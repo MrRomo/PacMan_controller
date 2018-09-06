@@ -1,9 +1,11 @@
 # pacman-controller
-This is a ROS package that contains examples of controllers for the pacman_world node in the pacman package. Currently, the package contains two nodes: pacman_controller_cpp and pacman_controller2_cpp that are C++ nodes for controlling two pacmans; one that publishes to pacmanActions0 topic and another to pacmanActions1. 
+This is a ROS package that contains examples of controllers for the pacman_world node in the pacman package. Currently, the package contains two nodes in C++ language and two nodes in Python: pacman_controller_cpp and pacman_controller2_cpp that are C++ nodes for controlling two pacmans; one that publishes to pacmanActions0 topic and another to pacmanActions1, like the pacman_controller_py.py and pacman_controller2_py.py nodes in Python language. 
 
 SYSTEM REQUIREMENTS
 	- Ubuntu 16.04 64 bits
 	- ROS Kinetic
+	- Python 2 
+	
 
 COMPILATION
 	- cd ~/catkin_ws/src
@@ -11,6 +13,11 @@ COMPILATION
 	- cd ..
 	- source devel/setup.bash
 	- catkin_make
+	Include for Python
+	- cd src/pacman-controller/scripts/
+	- chmod +x pacman_controller_py.py
+	- chmod +x pacman_controller2_py.py
+	
 
 EXECUTION 
 There are two ways to execute a pacman controller node 1) By executing it directly in the same machine as the pacman_world node and 2) Using a bash script that set all the necessary network parameters so that the node can interact with a pacman_world node in the same local network, but in a different machine. The first option requires the user to independently run a roscore process, source the setup.bash and run the controller node using the rosrun command. The second option, automatically run the roscore process (if it is not already running), it sources the setup.bash file and asks for the server ip address.
@@ -20,13 +27,19 @@ TRADITIONAL EXECUTION
 	- Run: roscore
 	- Open a new terminal
 	- source devel/setup.bash
+	For pacman_controller_cpp 
 	- rosrun pacman-controller pacman_controller_cpp
+	For pacman_controller_py.py 
+	- rosrun pacman-controller pacman_controller_py.py
 
 NETWORK EXECUTION
 	- cd ~/catkin_ws/src/pacman-controller
 	- source starPacmanController.sh
 	- Enter the server ip address
 	- rosrun pacman-controller pacman_controller_cpp
-
+	For pacman_controller_cpp 
+	- rosrun pacman-controller pacman_controller_cpp
+	For pacman_controller_py.py 
+	- rosrun pacman-controller pacman_controller_py.py
 FOR DEVELOPMENT (Recommended)
 	- http://wiki.ros.org/IDEs#Reusing_your_shell.27s_environment
