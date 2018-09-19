@@ -3,6 +3,8 @@ import rospy
 import random
 import joystickReader 
 import serial
+import serialReader
+
 
 from pacman.msg import actions
 from pacman.msg import pacmanPos
@@ -12,8 +14,6 @@ from pacman.msg import bonusPos
 from pacman.msg import game
 from pacman.msg import performance
 from pacman.srv import mapService
-
-ser = serial.Serial('/dev/ttyACM0', 9600)
 
 
 def pacmanPosCallback(msg):
@@ -45,16 +45,9 @@ def gameStateCallback(msg):
 def performanceCallback(msg):
 #    rospy.loginfo('Lives: {} Score: {} Time: {} PerformEval: {}'.format(msg.lives, msg.score, msg.gtime, msg.performEval) )
     pass
-def serialKey(): 
-    try:
-        move  = int(float(ser.readlinee().strip()))
-        print("Action move try: {}".format(move))
-    except ValueError:
-        move = 4
-        print("Action move except: {}".format(move))
-    return move
 
 def pacman_controller_py():
+    
     rospy.init_node('pacman_controller_py', anonymous=True)
     pub = rospy.Publisher('pacmanActions0', actions, queue_size=10)
     rospy.Subscriber('pacmanCoord0', pacmanPos, pacmanPosCallback)
@@ -85,7 +78,7 @@ def pacman_controller_py():
             
             #Serial controler
            
-            move = serialKey()
+            move = serialReader.serialKey()
             print("Action move: {}".format(move))
             
             if(move!=4):
